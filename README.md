@@ -15,10 +15,16 @@ This repository is a Hermes **skill tap**: skills live under `skills/<name>/SKIL
 
 ```bash
 hermes skills tap add sauravcodes-dotcom/hermes-focus-block-planner
-hermes skills search focus-block-planner   # search needs GitHub API quota: set GITHUB_TOKEN or install gh
+hermes skills search focus-block-planner --source github   # see note below
 hermes skills install sauravcodes-dotcom/hermes-focus-block-planner/skills/focus-block-planner
 hermes skills list | grep focus-block-planner
 ```
+
+Note on search (Hermes v0.22.7):
+- Plain `hermes skills search` doesn't query custom taps while Hermes' central index is reachable.
+- `--source github` does query them. Hermes walks its 27 built-in taps first and stops CLI searches at 30 s, though, so the first cold search may time out. Once the tap cache is warm, it lists this skill in about 1 s.
+- Setting `GITHUB_TOKEN` avoids the 60 requests/hour anonymous GitHub API limit.
+- Installing by identifier (above) always works.
 
 To pin a version, check out the tagged release (`v1.0.1`). The install transcript in `docs/INSTALL_TRANSCRIPT.md` records the exact commit that was tested.
 
