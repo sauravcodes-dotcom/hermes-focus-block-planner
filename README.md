@@ -20,7 +20,7 @@ hermes skills install sauravcodes-dotcom/hermes-focus-block-planner/skills/focus
 hermes skills list | grep focus-block-planner
 ```
 
-To pin a version, check out the tagged release (`v1.0.0`). The install transcript in `docs/INSTALL_TRANSCRIPT.md` records the exact commit that was tested.
+To pin a version, check out the tagged release (`v1.0.1`). The install transcript in `docs/INSTALL_TRANSCRIPT.md` records the exact commit that was tested.
 
 ## Use
 

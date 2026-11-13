@@ -1,7 +1,7 @@
 ---
 name: focus-block-planner
 description: "Plan deep-work focus blocks from an .ics calendar export: busy times, conflicts, free slots, deadline-aware task scheduling."
-version: 1.0.0
+version: 1.0.1
 author: Saurav Sharma (sauravcodes-dotcom)
 license: MIT
 platforms: [linux, macos]
@@ -33,20 +33,26 @@ Don't use it to create, move or delete calendar events: this skill only reads an
 
 ## Procedure
 
-The script lives in this skill's directory, at `scripts/focus_planner.py`. Run it with `python3`. It prints JSON.
+The script is `scripts/focus_planner.py` inside this skill's directory. A hub install puts that directory under `$HERMES_HOME/skills/` (default `~/.hermes/skills/`), so resolve the script path with `find` instead of guessing, and keep `$(...)` exactly as written. The script prints JSON.
+
+```bash
+FBP="$(find "${HERMES_HOME:-$HOME/.hermes}/skills" -path '*/focus-block-planner/scripts/focus_planner.py' | head -1)"; echo "$FBP"
+```
+
+Every command below starts with that lookup, so each one also works on its own in a fresh shell.
 
 1. **Busy times and conflicts**
    ```bash
-   python3 SKILL_DIR/scripts/focus_planner.py busy --ics calendar.ics --start 2026-11-16 --days 5 --tz America/Los_Angeles
+   python3 "$(find "${HERMES_HOME:-$HOME/.hermes}/skills" -path '*/focus-block-planner/scripts/focus_planner.py' | head -1)" busy --ics calendar.ics --start 2026-11-16 --days 5 --tz America/Los_Angeles
    ```
    Report `conflicts` first (pairs of overlapping events with the overlap in minutes).
 2. **Free slots inside working hours**
    ```bash
-   python3 SKILL_DIR/scripts/focus_planner.py free --ics calendar.ics --start 2026-11-16 --days 5 --tz America/Los_Angeles --work 09:00-17:00 --min-minutes 45
+   python3 "$(find "${HERMES_HOME:-$HOME/.hermes}/skills" -path '*/focus-block-planner/scripts/focus_planner.py' | head -1)" free --ics calendar.ics --start 2026-11-16 --days 5 --tz America/Los_Angeles --work 09:00-17:00 --min-minutes 45
    ```
 3. **Focus plan for tasks** (earliest deadline first; long tasks split into blocks of at most `--max-block` minutes, with a `--buffer` break after each block)
    ```bash
-   python3 SKILL_DIR/scripts/focus_planner.py plan --ics calendar.ics --start 2026-11-16 --days 5 --tz America/Los_Angeles \
+   python3 "$(find "${HERMES_HOME:-$HOME/.hermes}/skills" -path '*/focus-block-planner/scripts/focus_planner.py' | head -1)" plan --ics calendar.ics --start 2026-11-16 --days 5 --tz America/Los_Angeles \
      --task "Write project report:150:2026-11-18" --task "Review pull requests:45" --max-block 90 --buffer 10
    ```
 4. Present the result as a short list: day, time range, task. Mention every entry in `unscheduled` with its `unscheduled_minutes`, and suggest a fix, such as extending working hours, adding days, or moving the deadline.
@@ -61,4 +67,4 @@ The script lives in this skill's directory, at `scripts/focus_planner.py`. Run i
 
 ## Verification
 
-`python3 SKILL_DIR/tests/test_focus_planner.py` runs the bundled unit tests against `examples/sample_week.ics`.
+`python3 "$(dirname "$(dirname "$FBP")")/tests/test_focus_planner.py"` runs the bundled unit tests against `examples/sample_week.ics`.

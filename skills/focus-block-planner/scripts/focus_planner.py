@@ -27,7 +27,7 @@ from datetime import date, datetime, time, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 
 
 # ---------------------------------------------------------------- iCalendar parsing (RFC 5545 subset)
