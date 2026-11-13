@@ -15,7 +15,7 @@ This repository is a Hermes **skill tap**: skills live under `skills/<name>/SKIL
 
 ```bash
 hermes skills tap add sauravcodes-dotcom/hermes-focus-block-planner
-hermes skills search focus-block-planner
+hermes skills search focus-block-planner   # search needs GitHub API quota: set GITHUB_TOKEN or install gh
 hermes skills install sauravcodes-dotcom/hermes-focus-block-planner/skills/focus-block-planner
 hermes skills list | grep focus-block-planner
 ```
