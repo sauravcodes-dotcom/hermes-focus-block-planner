@@ -1,0 +1,49 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//focus-block-planner//synthetic sample//EN
+BEGIN:VEVENT
+UID:sample-1@example.invalid
+SUMMARY:Team standup
+DTSTART;TZID=America/Los_Angeles:20261116T093000
+DTEND;TZID=America/Los_Angeles:20261116T100000
+END:VEVENT
+BEGIN:VEVENT
+UID:sample-2@example.invalid
+SUMMARY:Advisor meeting
+DTSTART;TZID=America/Los_Angeles:20261116T130000
+DTEND;TZID=America/Los_Angeles:20261116T140000
+END:VEVENT
+BEGIN:VEVENT
+UID:sample-3@example.invalid
+SUMMARY:Lab sync (overlaps advisor
+  meeting)
+DTSTART:20261116T213000Z
+DTEND:20261116T223000Z
+END:VEVENT
+BEGIN:VEVENT
+UID:sample-4@example.invalid
+SUMMARY:Lecture
+DTSTART;TZID=America/Los_Angeles:20261117T100000
+DURATION:PT1H50M
+END:VEVENT
+BEGIN:VEVENT
+UID:sample-5@example.invalid
+SUMMARY:Cancelled coffee chat
+STATUS:CANCELLED
+DTSTART;TZID=America/Los_Angeles:20261117T150000
+DTEND;TZID=America/Los_Angeles:20261117T160000
+END:VEVENT
+BEGIN:VEVENT
+UID:sample-6@example.invalid
+SUMMARY:Office hours (free/transparent)
+TRANSP:TRANSPARENT
+DTSTART;TZID=America/Los_Angeles:20261117T140000
+DTEND;TZID=America/Los_Angeles:20261117T150000
+END:VEVENT
+BEGIN:VEVENT
+UID:sample-7@example.invalid
+SUMMARY:Campus holiday banner
+DTSTART;VALUE=DATE:20261118
+DTEND;VALUE=DATE:20261119
+END:VEVENT
+END:VCALENDAR
